@@ -54,6 +54,21 @@ public class LoginDAO {
         }
     }
     
+    public List<String> obtenerCorreosRegistrados() {
+    List<String> correos = new ArrayList<>();
+    String sql = "SELECT correo FROM usuarios";
+    try {
+        con = cn.getConnection();
+        ps = con.prepareStatement(sql);
+        rs = ps.executeQuery();
+        while (rs.next()) {
+            correos.add(rs.getString("correo"));
+        }
+    } catch (SQLException e) {
+        System.out.println(e.toString());
+    }
+    return correos;
+}
     public List ListarUsuarios(){
        List<login> Lista = new ArrayList();
        String sql = "SELECT * FROM usuarios";

@@ -7,6 +7,8 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 
@@ -15,12 +17,21 @@ public class Login extends javax.swing.JFrame {
     LoginDAO login = new LoginDAO();
     public Login() {
         initComponents();
+        
+        
+List<String> correosRegistrados = login.obtenerCorreosRegistrados();
+
+    // Establecer los correos en el JComboBox
+    txtCorreo1.setModel(new DefaultComboBoxModel<>(correosRegistrados.toArray(new String[0])));
+    txtPass.setText("admin"); // Establecer la contraseña por defecto
         this.setLocationRelativeTo(null);
-        txtCorreo.setText("angel@gmail.com");
+   //     txtCorreo1.setText("angel@gmail.com");
         txtPass.setText("admin");
     }
     public void validar(){
-        String correo = txtCorreo.getText();
+        
+          String correo = (String) txtCorreo1.getSelectedItem(); 
+       // String correo = txtCorreo.getText();
         String pass = String.valueOf(txtPass.getPassword());
         if (!"".equals(correo) || !"".equals(pass)) {
             
@@ -47,13 +58,13 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtCorreo = new javax.swing.JTextField();
         txtPass = new javax.swing.JPasswordField();
         btnIniciar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
+        txtCorreo1 = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -81,19 +92,12 @@ public class Login extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(0, 0, 255));
         jLabel4.setText("Password");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 175, -1, -1));
-
-        txtCorreo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCorreoActionPerformed(evt);
-            }
-        });
-        jPanel2.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 132, 226, 30));
         jPanel2.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 199, 226, 30));
 
         btnIniciar.setBackground(new java.awt.Color(0, 0, 204));
         btnIniciar.setForeground(new java.awt.Color(255, 255, 255));
         btnIniciar.setText("Login");
-        btnIniciar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIniciar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarActionPerformed(evt);
@@ -154,6 +158,14 @@ public class Login extends javax.swing.JFrame {
 
         jPanel2.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 327, 226, -1));
 
+        txtCorreo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtCorreo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCorreo1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(txtCorreo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 220, 30));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, 280, 380));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -209,10 +221,6 @@ public class Login extends javax.swing.JFrame {
       validar();
     }//GEN-LAST:event_btnIniciarActionPerformed
 
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
@@ -236,6 +244,10 @@ public class Login extends javax.swing.JFrame {
         } catch (IOException | URISyntaxException e1) {
         }
     }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void txtCorreo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreo1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,7 +316,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JTextField txtCorreo;
+    private javax.swing.JComboBox<String> txtCorreo1;
     private javax.swing.JPasswordField txtPass;
     // End of variables declaration//GEN-END:variables
 }
