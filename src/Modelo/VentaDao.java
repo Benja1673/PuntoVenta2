@@ -141,8 +141,8 @@ public class VentaDao {
             if (rs.next()) {
                 cl.setId(rs.getInt("id"));
                 cl.setCliente(rs.getInt("cliente"));
-                cl.setTotal(rs.getDouble("total"));
                 cl.setVendedor(rs.getString("vendedor"));
+                cl.setTotal(rs.getDouble("total"));
                 cl.setFecha(rs.getString("fecha"));
             }
         } catch (SQLException e) {

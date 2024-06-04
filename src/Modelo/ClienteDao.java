@@ -36,7 +36,7 @@ public class ClienteDao {
             ps.execute();
             return true;
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e.toString());
+                JOptionPane.showMessageDialog(null, e.toString());
             return false;
         }finally{
             try {
